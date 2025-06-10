@@ -7,6 +7,7 @@ def menu_principal():
         print('1- Cadastre-se')
         print('2- Login')
         print('0- Sair do programa')
+
         op = input('Digite a opção desejada: ')
 
         if op == '1':
@@ -15,8 +16,6 @@ def menu_principal():
             email_login = usuario.fazer_login()
             if email_login:
                 menu_usuario_logado(email_login)
-            else:
-                print('Email ou senha inválidos!')
         elif op == '0':
             print('Saindo do programa...')
             break
