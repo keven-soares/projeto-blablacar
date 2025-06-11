@@ -2,6 +2,14 @@ usuarios = {'kevensoares@gmail.com': ['joelderson keven soares da silva','keven1
             'jubiscleudo@gmail.com': ['jubiscleudo jeberson santos', 'juju123']}
 
 import utilidade
+import json
+
+def carregar_usuarios(): ########################################### copiei do chat gpt #####################################
+    try:
+        with open('usuarios.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
 def cadastrar_usuario():
     print('----------- CADASTRO ------------')
@@ -11,7 +19,7 @@ def cadastrar_usuario():
         email = input('Digite um email válido (ex: usuario@exemplo.com): ')
     senha = input('Digite sua senha: ')
     usuarios[email] = [nome_completo, senha]
-    with open("usuarios.txt", "a") as arquivo: ##### copiei do chat gpt ######
+    with open("usuarios.txt", "a") as arquivo: ########################### copiei do chat gpt #################################
         arquivo.write(f"{email}:{senha}\n")
     print('Usuário cadastrado com sucesso!')
     utilidade.mostrar_linha()
@@ -20,12 +28,14 @@ def fazer_login():
     print('-------- FAÇA SEU LOGIN ----------')
     email_login = input('digite seu email: ')
     senha_login = input('digite sua senha: ')
+
     if email_login in usuarios and usuarios[email_login][1] == senha_login:
         print(f'\nBem-vindo, {usuarios[email_login][0]}! Login realizado com sucesso!')
         return email_login
     else:
         print('Email ou senha inválidos!')
         return None
+utilidade.mostrar_linha()
 
 
 
