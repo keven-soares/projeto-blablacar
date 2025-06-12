@@ -10,11 +10,12 @@ def cadastrar_carona(email_motorista):
     origem = input('qual o local de origem da sua carona: ').title()
     destino = input('qual o local de destino da sua carona: ').title()
     data = utilidade.verificar_data
-    horario = input('qual o horário de partida: ')
-    qtde_vaga = int(input('vagas disponíveis: '))
-    valor_vaga = float(input('qual o valor da viajem(por vaga): '))
+    hora = input('qual o horário de partida: ')
+    qtde_vagas = int(input('vagas disponíveis: '))
+    valor_vagas = float(input('qual o valor da viajem(por vaga): '))
+    caronas[email_motorista] = [origem, destino, data, hora, qtde_vagas, valor_vagas, []]
     print('\n viagem confirmada')
-    caronas[email_motorista] = [origem, destino, data, horario, qtde_vaga, valor_vaga, []]
+
     utilidade.mostrar_linha()
 
 
@@ -166,4 +167,5 @@ def mostrar_caronas_cadastradas(email_usuario):
     if not encontrou_caronas:
         print('\nVocê não está cadastrado em nenhuma carona no momento.')
     utilidade.mostrar_linha()
+
 

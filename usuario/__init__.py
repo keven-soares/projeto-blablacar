@@ -1,40 +1,66 @@
-usuarios = {'kevensoares@gmail.com': ['joelderson keven soares da silva','keven123'],
-            'jubiscleudo@gmail.com': ['jubiscleudo jeberson santos', 'juju123']}
-
 import utilidade
-import json
+from main import carregar_usuarios
 
-def carregar_usuarios(): ########################################### copiei do chat gpt #####################################
-    try:
-        with open('usuarios.json', 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+usuarios = carregar_usuarios()
 
 def cadastrar_usuario():
     print('----------- CADASTRO ------------')
     nome_completo = input('Digite seu nome completo: ')
-    email = input('Digite seu melhor email: ')
-    while '@' not in email or '.com' not in email:
-        email = input('Digite um email válido (ex: usuario@exemplo.com): ')
+    while True:
+        email_login = input('Digite seu e-mail: ')
+        if '@' in email_login and '.com' in email_login:
+            if email_login not in usuarios:
+                break
+            else:
+                print('E-mail já cadastrado!')
+        else:
+            print('E-mail inválido (use formato: usuario@exemplo.com)')
+
     senha = input('Digite sua senha: ')
-    usuarios[email] = [nome_completo, senha]
-    with open("usuarios.txt", "a") as arquivo: ########################### copiei do chat gpt #################################
-        arquivo.write(f"{email}:{senha}\n")
+    while len(senha) < 8:
+        print('Senha muito curta (mínimo 8 caracteres)')
+        senha = input('Digite sua senha: ')
+
+    with open('usuarios.txt', 'a', encoding='utf-8') as arquivo:
+        arquivo.write(f"'{nome_completo}': ['{email_login}', '{senha}'],\n")
+
     print('Usuário cadastrado com sucesso!')
+
+    atualizar = carregar_usuarios()
+
+    for nome, dados in atualizar.items():
+        if email_login == dados[0] and dados[1] == senha:
+            print(f'{dados[0]}: {nome} (senha: {'*' * len(dados[1])})')
+            break
     utilidade.mostrar_linha()
+
+'''def verificar_usuarios():
+    print('\n Usuários no sistema:')
+    if not usuarios:
+        print('Nenhum usuário foi carregado!')
+        return False
+    return True
+
+if not verificar_usuarios():
+    print('Falha ao carregar usuários. Verifique o arquivo usuarios.txt')'''
 
 def fazer_login():
     print('-------- FAÇA SEU LOGIN ----------')
     email_login = input('digite seu email: ')
     senha_login = input('digite sua senha: ')
 
-    if email_login in usuarios and usuarios[email_login][1] == senha_login:
-        print(f'\nBem-vindo, {usuarios[email_login][0]}! Login realizado com sucesso!')
-        return email_login
+    usuarios = carregar_usuarios()
+
+    for nome, dados in usuarios.items():
+        email, senha = dados
+
+    if email_login == email and senha_login == senha:
+        print('login bem sucedido')
+        return True
     else:
-        print('Email ou senha inválidos!')
-        return None
+        print("erro ao fazer login")
+        return False
+
 utilidade.mostrar_linha()
 
 

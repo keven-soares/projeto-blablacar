@@ -1,5 +1,11 @@
-k@.com|keven|keven
-k@.com|k|k
-k@.com|k|k
-i@.com:i
-i@.com:i
+m;m@.com;12345678
+'macelo': ['macelo@gmail.com', '12345678'],
+'fabricio ': ['fabricioeventos@gmail.com', '12345678'],
+'keven soares': ['kevao@gmail.com', '12345678'],
+'ranchucrute': ['ran@gmail.com', '12345678'],
+'xuxu beleza': ['xuxu@outlook.com', '12345678'],
+'blablabal': ['bla@gmail.com', '12345678'],
+'hand': ['hand@hotmail.com', '12345678'],
+'hohoho': ['ho@gmail.com', '12345678'],
+'vaquejada': ['vaqueiro@hotmail.com', '12345678'],
+'123': ['123@.com', '12345678'],
