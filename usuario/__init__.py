@@ -6,6 +6,10 @@ usuarios = carregar_usuarios()
 def cadastrar_usuario():
     print('----------- CADASTRO ------------')
     nome_completo = input('Digite seu nome completo: ')
+    while len(nome_completo) < 13:
+        print('nome muito curto, digite seu nome completo')
+        nome_completo = input('digite seu nome completo: ')
+
     while True:
         email_login = input('Digite seu e-mail: ')
         if '@' in email_login and '.com' in email_login:
@@ -54,12 +58,10 @@ def fazer_login():
     for nome, dados in usuarios.items():
         email, senha = dados
 
-    if email_login == email and senha_login == senha:
-        print('login bem sucedido')
-        return True
-    else:
-        print("erro ao fazer login")
-        return False
+        if email_login == email and senha_login == senha:
+            print('login bem sucedido')
+        else:
+            print("erro ao fazer login")
 
 utilidade.mostrar_linha()
 

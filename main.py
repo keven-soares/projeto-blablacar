@@ -5,25 +5,18 @@ usuarios = {}
 
 def carregar_usuarios():
     if os.path.exists('usuarios.txt'):
-        # Lê o arquivo linha por linha
         with open('usuarios.txt', 'r', encoding='utf-8') as arquivo:
             for linha in arquivo:
-                # Remove vírgula e quebra de linha
                 linha = linha.strip().rstrip(',')
 
-                # Divide a linha na chave e no valor
                 if ':' in linha:
                     chave, valor = linha.split(':', 1)
-                    nome = chave.strip().strip("'")  # Remove espaços e aspas simples
-                    dados = eval(valor.strip())  # Converte a string ['email', 'senha'] em lista
-
+                    nome = chave.strip().strip("'")
+                    dados = eval(valor.strip())
                     usuarios[nome] = dados
-
-        # Agora você pode usar um for normalmente:
         for nome, dados in usuarios.items():
             email, senha = dados
     return usuarios
-
 
 def menu_principal():
     while True:
@@ -58,7 +51,7 @@ def menu_usuario_logado(email_login):
         print('7- Mostrar detalhes da carona')
         print('8- Caronas que você está cadastrado')
         print('9- Função extra')
-        print('10- relatório do total')
+        print('10- carteira do motorista (relatório)')
         print('11- Logout')
 
         op = input('\nDigite a opção desejada: ')
@@ -82,7 +75,7 @@ def menu_usuario_logado(email_login):
         elif op == '9':
             print('em manutenção')
         elif op == '10':
-            print('em desenvolvimento')
+            caronas.carteira_motorista_relatorio()
         elif op == '11':
             print('\n-----------logout-------------')
             msg_confirmacao = input('Tem certeza que gostaria de sair? (s/n): ').lower()

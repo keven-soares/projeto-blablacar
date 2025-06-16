@@ -168,4 +168,31 @@ def mostrar_caronas_cadastradas(email_usuario):
         print('\nVocê não está cadastrado em nenhuma carona no momento.')
     utilidade.mostrar_linha()
 
+def carteira_motorista_relatorio():
+    print('\n---------- CARTEIRA DO MOTORISTA ------------')
+    total_geral = 0
+    caronas_encontradas = False
+    email_login = usuarios
+
+    for email_motorista in caronas:
+        if email_motorista == email_login:
+            caronas_encontradas = True
+            origem, destino, data, hora, vagas, valor, passageiros = caronas[email_motorista]
+            vagas_ocupadas = int(vagas) - len(passageiros)
+            total_carona = vagas_ocupadas * float(valor)
+            total_geral += total_carona
+
+            print(f'\nDe: {origem} para {destino}')
+            print(f'Data/Horário: {data} - {hora}')
+            print(f'Valor por vaga: R${valor}')
+            print(f'Vagas restantes: {vagas}')
+            print(f'Vagas ocupadas: {vagas_ocupadas}')
+            print(f'Total desta carona: R${total_carona}')
+
+    if caronas_encontradas:
+        print(f'\nTOTAL GERAL A RECEBER: R${total_geral:.2f}')
+    else:
+        print('\nNão há caronas cadastradas')
+    utilidade.mostrar_linha()
+
 
