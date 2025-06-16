@@ -1,3 +1,5 @@
+from yfinance.utils import fix_Yahoo_returning_live_separate
+
 import utilidade
 from main import carregar_usuarios
 
@@ -60,10 +62,14 @@ def fazer_login():
 
         if email_login == email and senha_login == senha:
             print('login bem sucedido')
-        else:
-            print("erro ao fazer login")
+            return True
+    else:
+        print("erro ao fazer login")
+        return False
+
 
 utilidade.mostrar_linha()
+
 
 
 
